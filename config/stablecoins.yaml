@@ -1,0 +1,233 @@
+# Stablecoin definitions for DepegScope
+
+stablecoins:
+  USDT:
+    name: "Tether"
+    type: "fiat-backed"
+    chain: "multi-chain"
+    contract_ethereum: "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+    coingecko_id: "tether"
+    market_cap_rank: 1
+    issuer: "Tether Limited"
+
+  USDC:
+    name: "USD Coin"
+    type: "fiat-backed"
+    chain: "multi-chain"
+    contract_ethereum: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+    coingecko_id: "usd-coin"
+    market_cap_rank: 2
+    issuer: "Circle"
+
+  DAI:
+    name: "Dai"
+    type: "crypto-backed"
+    chain: "ethereum"
+    contract_ethereum: "0x6B175474E89094C44Da98b954EescdeCB5f6f"
+    coingecko_id: "dai"
+    collateral: ["USDC", "ETH", "WBTC", "stETH"]
+    market_cap_rank: 3
+    issuer: "MakerDAO"
+
+  USDe:
+    name: "Ethena USDe"
+    type: "algorithmic"
+    chain: "ethereum"
+    contract_ethereum: "0x4c9EDD5852cd905f086C759E8383e09bff1E68B3"
+    coingecko_id: "ethena-usde"
+    mechanism: "delta-neutral"
+    market_cap_rank: 4
+    issuer: "Ethena Labs"
+
+  FRAX:
+    name: "Frax"
+    type: "hybrid"
+    chain: "multi-chain"
+    contract_ethereum: "0x853d955aCEf822Db058eb8505911ED77F175b99e"
+    coingecko_id: "frax"
+    collateral: ["USDC", "FXS"]
+    market_cap_rank: 5
+    issuer: "Frax Finance"
+
+  FDUSD:
+    name: "First Digital USD"
+    type: "fiat-backed"
+    chain: "multi-chain"
+    contract_ethereum: "0xc5f0f7b66764F6ec8C8Dff7BA683102295E16409"
+    coingecko_id: "first-digital-usd"
+    market_cap_rank: 6
+    issuer: "First Digital"
+
+  TUSD:
+    name: "TrueUSD"
+    type: "fiat-backed"
+    chain: "multi-chain"
+    contract_ethereum: "0x0000000000085d4780B73119b644AE5ecd22b376"
+    coingecko_id: "true-usd"
+    market_cap_rank: 7
+    issuer: "TrustToken"
+
+  sUSD:
+    name: "Synthetix USD"
+    type: "crypto-backed"
+    chain: "ethereum"
+    contract_ethereum: "0x57Ab1ec28D129707052df4dF418D58a2D46d5f51"
+    coingecko_id: "nusd"
+    collateral: ["SNX"]
+    issuer: "Synthetix"
+
+  LUSD:
+    name: "Liquity USD"
+    type: "crypto-backed"
+    chain: "ethereum"
+    contract_ethereum: "0x5f98805A4E8be255a32880FDeC7F6728C6568bA0"
+    coingecko_id: "liquity-usd"
+    collateral: ["ETH"]
+    issuer: "Liquity"
+
+  GHO:
+    name: "GHO"
+    type: "crypto-backed"
+    chain: "ethereum"
+    contract_ethereum: "0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f"
+    coingecko_id: "gho"
+    collateral: ["aTokens"]
+    issuer: "Aave"
+
+  crvUSD:
+    name: "Curve USD"
+    type: "crypto-backed"
+    chain: "ethereum"
+    contract_ethereum: "0xf939E0A03FB07F59A73314E73794Be0E57ac1b4E"
+    coingecko_id: "crvusd"
+    collateral: ["ETH", "WBTC", "wstETH", "sfrxETH"]
+    issuer: "Curve Finance"
+
+  PYUSD:
+    name: "PayPal USD"
+    type: "fiat-backed"
+    chain: "ethereum"
+    contract_ethereum: "0x6c3ea9036406852006290770BEdFcAbA0e23A0e8"
+    coingecko_id: "paypal-usd"
+    issuer: "PayPal"
+
+  USDP:
+    name: "Pax Dollar"
+    type: "fiat-backed"
+    chain: "ethereum"
+    contract_ethereum: "0x8E870D67F660D95d5be530380D0eC0bd388289E1"
+    coingecko_id: "paxos-standard"
+    issuer: "Paxos"
+
+  GUSD:
+    name: "Gemini Dollar"
+    type: "fiat-backed"
+    chain: "ethereum"
+    contract_ethereum: "0x056Fd409E1d7A124BD7017459dFEa2F387b6d5Cd"
+    coingecko_id: "gemini-dollar"
+    issuer: "Gemini"
+
+# Historical depeg events for validation
+historical_depegs:
+  terra_ust:
+    date: "2022-05-09"
+    stablecoin: "UST"
+    type: "algorithmic"
+    low_price: 0.006
+    total_loss_usd: 60000000000
+    duration_days: 7
+    cause: "Death spiral - algorithmic mechanism failure"
+    affected_protocols:
+      - "Anchor Protocol"
+      - "Mirror Protocol"
+      - "Lido (stLUNA)"
+    cascade_effects:
+      - "LUNA collapse"
+      - "3AC insolvency"
+      - "Celsius freeze"
+      - "Voyager bankruptcy"
+
+  usdc_svb:
+    date: "2023-03-11"
+    stablecoin: "USDC"
+    type: "fiat-backed"
+    low_price: 0.87
+    recovery_days: 3
+    cause: "SVB collapse, $3.3B reserves frozen"
+    affected_stablecoins:
+      - symbol: "DAI"
+        low_price: 0.89
+        reason: "60% USDC collateral"
+      - symbol: "FRAX"
+        low_price: 0.87
+        reason: "USDC backing"
+    affected_protocols:
+      - "MakerDAO"
+      - "Frax Finance"
+      - "Curve 3pool"
+    lessons:
+      - "Fiat-backed stablecoins have banking counterparty risk"
+      - "Collateral concentration creates contagion"
+
+  susd_2025:
+    date: "2025-04-15"
+    stablecoin: "sUSD"
+    type: "crypto-backed"
+    low_price: 0.68
+    cause: "SIP-420 collateral change, SNX price decline"
+    duration_days: 14
+    affected_protocols:
+      - "Synthetix"
+      - "Curve sUSD pool"
+
+  nov_2025_cascade:
+    date: "2025-11-06"
+    stablecoins: ["xUSD", "deUSD", "USDX"]
+    trigger: "xUSD"
+    low_prices:
+      xUSD: 0.23
+      deUSD: 0.02
+      USDX: 0.30
+    cause: "Stream platform $93M asset loss"
+    cascade_pattern: "xUSD -> deUSD -> USDX"
+    total_affected_tvl: 150000000
+    lessons:
+      - "Small stablecoins can cascade to each other"
+      - "Shared collateral creates hidden dependencies"
+
+# Stablecoin type characteristics
+type_characteristics:
+  fiat-backed:
+    description: "Backed 1:1 by fiat currency reserves"
+    risk_factors:
+      - "Banking counterparty risk"
+      - "Regulatory risk"
+      - "Audit transparency"
+    examples: ["USDT", "USDC", "TUSD", "FDUSD"]
+    typical_collateral_ratio: 1.0
+
+  crypto-backed:
+    description: "Over-collateralized by cryptocurrency"
+    risk_factors:
+      - "Collateral volatility"
+      - "Liquidation cascade risk"
+      - "Oracle manipulation"
+    examples: ["DAI", "LUSD", "sUSD", "GHO"]
+    typical_collateral_ratio: 1.5
+
+  algorithmic:
+    description: "Maintains peg through algorithmic mechanisms"
+    risk_factors:
+      - "Death spiral risk"
+      - "Confidence-dependent"
+      - "Complex mechanism failure"
+    examples: ["USDe", "UST (defunct)"]
+    typical_collateral_ratio: 1.0
+
+  hybrid:
+    description: "Combination of collateral and algorithmic mechanisms"
+    risk_factors:
+      - "Combined risks of both types"
+      - "Mechanism complexity"
+    examples: ["FRAX"]
+    typical_collateral_ratio: 0.85

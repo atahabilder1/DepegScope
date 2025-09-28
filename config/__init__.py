@@ -1,0 +1,25 @@
+"""Configuration for DepegScope."""
+
+from .settings import (
+    ROOT_DIR,
+    DATA_DIR,
+    RAW_DATA_DIR,
+    PROCESSED_DATA_DIR,
+    HISTORICAL_DATA_DIR,
+    MAJOR_STABLECOINS,
+    DEPEG_THRESHOLD,
+    CONTAGION_THRESHOLD,
+    SIMULATION_STEPS,
+)
+
+__all__ = [
+    "ROOT_DIR",
+    "DATA_DIR",
+    "RAW_DATA_DIR",
+    "PROCESSED_DATA_DIR",
+    "HISTORICAL_DATA_DIR",
+    "MAJOR_STABLECOINS",
+    "DEPEG_THRESHOLD",
+    "CONTAGION_THRESHOLD",
+    "SIMULATION_STEPS",
+]
